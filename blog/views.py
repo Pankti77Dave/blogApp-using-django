@@ -24,3 +24,10 @@ def tag(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
 
     return render(request, 'blog/tag.html', {'tag': tag})
+
+def search(request):
+    query = request.GET.get('query', '')
+
+    posts = Post.objects.filter(title_icontains=query)
+
+    return render(request, 'blog/search.html', {'posts': posts, 'query': query})
