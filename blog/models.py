@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from calendar import c
 from distutils.command.upload import upload
 import email
 from django.db import models
@@ -12,8 +14,11 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return '/%s/' % self.slug
+
 class Post(models.Model):
-    tag = models.ForeignKey(Tag, related_name='posts', on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, related_name='posts', on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     intro = models.TextField()
@@ -27,6 +32,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return '/%s/%s/' % (self.tag.slug, self.slug)
+
+        
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -35,3 +45,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+

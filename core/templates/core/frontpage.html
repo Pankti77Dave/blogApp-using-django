@@ -9,7 +9,7 @@
         <div class="blog-item">
             
             <div class="blog-item-inner">
-                <a href="{% url 'post_detail' post.tag.slug post.slug %}">
+                 <a href="{% url 'post_detail' post.id %}"> 
                     {% if post.image %}
                     <figure class="image">
                         <img src="{{ post.image.url }}" alt="">
@@ -18,7 +18,9 @@
                     <h2>{{ post.title }}</h2>
                     <p>{{ post.intro }}</p>
                     <p>{{ post.created_at|date:'M-d-Y H:i' }}</p>
+
                 </a>
+                <a href="{% url 'delete' post.id %}">Delete</a>
             </div>
             
         </div>
