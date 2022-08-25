@@ -27,8 +27,8 @@
               <li><a href="#" class="nav-link px-2 link-dark">Create Post</a></li>
             </ul>
     
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" class="form-control" placeholder="Search post" aria-label="Search">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get" action="{% url 'search' %}">
+              <input name="query" type="search" class="form-control" placeholder="Search post" aria-label="Search">
             </form>
     
             <div class="dropdown text-end">
