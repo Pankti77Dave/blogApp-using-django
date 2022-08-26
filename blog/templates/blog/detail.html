@@ -17,13 +17,21 @@
                 <p>{{ post.body }}</p>
     
                 <p><small>Tags:    <a href="{% url 'tag_detail' post.tag.slug %}">{{ post.tag }}</a></small></p>
+                
+                <div class="comment-block">
+                    {% for comment in comments %} 
+                    <p>{{ comment.detail }}</p>
+                    <a href="{% url 'deletecomment' post.id comment.id  %}">Delete comment</a>
+                    {% endfor %}
+                </div>
+                
                 <div class="comment-section">
-                    <form action="post">
+                    <form action="/{{ post.id }}/createcomment/" method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="field">
                             <div class="control">
-                                <button class="btn btn-success">
+                                <button class="btn btn-success" type="submit" >
                                     Submit comment
                                 </button>
                             </div>

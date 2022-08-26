@@ -29,32 +29,29 @@
             </a>
     
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-              <li><a href="{% url 'about' %}" class="nav-link px-2 link-dark">About</a></li>
+              {% if user.is_authenticated %}
+              <li>
+                <a href="/" class="nav-link px-2 link-secondary">Home</a>
+              </li>
               <li>
                 <a href="{% url 'add' %}" class="nav-link px-2 link-dark">Add post</a>
               </li>
               <li>
+                <a href="{% url 'logout' %}" class="nav-link px-2 link-dark">Logout</a>
+              </li>
+              {% else %}
+              <li>
                 <a href="{% url 'register' %}" class="nav-link px-2 link-dark">Register</a>
               </li>
+              <li>
+                <a href="{% url 'login' %}" class="nav-link px-2 link-dark">Login</a>
+              </li>
+              {% endif %}
             </ul>
     
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get" action="{% url 'search' %}">
               <input name="query" type="search" class="form-control" placeholder="Search post" aria-label="Search">
             </form>
-    
-            <div class="dropdown text-end">
-              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-              </a>
-              <ul class="dropdown-menu text-small">
-                <li><a class="dropdown-item" href="#">New post</a></li>
-                <li><a class="dropdown-item" href="#">My posts</a></li>
-                <li><a class="dropdown-item" href="#">My profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
-            </div>
           </div>
         </div>
     </header>

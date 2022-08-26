@@ -9,7 +9,7 @@ class PostAdmin(admin.ModelAdmin):
      prepopulated_fields = {'slug': ('title',)}
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'created_at']
+    list_display = [ 'detail']
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag)
