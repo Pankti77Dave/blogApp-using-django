@@ -2,7 +2,7 @@ from django.db.models import Q
 from gc import get_objects
 
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import BlogForm, CommentForm
+from .forms import BlogForm, CommentForm, UpdateForm
 from .models import Post, Tag
 
 def detail(request, id):
@@ -49,6 +49,10 @@ def create(request):
     #         pass
 
     return redirect( '/')
+def update(request, id):
+    post = Post.objects.get(id=id)
+    post.update(id)
+    return redirect('/')
 
 def delete(request,id):
     post = Post.objects.get(id=id)
